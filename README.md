@@ -54,3 +54,7 @@ You can test your installation with sample variant call files. Input test files 
 ## Report Preview
 
 ![Output file](https://github.com/nesegunes/aiv/blob/master/output/test_annotate_variants_AIM_Report-01.png?raw=true)
+
+## Future Work
+
+- Performance can be determined by calculating the running time for given input file with 6000+ mutations.
