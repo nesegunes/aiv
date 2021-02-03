@@ -1,8 +1,8 @@
 Metadata-Version: 2.1
 Name: aiv
-Version: 0.3.24
+Version: 0.3.26
 Summary: A variant annotation package
-Home-page: https://github.com/nesegunes
+Home-page: https://github.com/nesegunes/aiv
 Author: tardis
 Author-email: nesegunes.ce@gmail.com
 License: UNKNOWN
@@ -49,7 +49,7 @@ Description: [![PyPI](https://img.shields.io/pypi/v/aiv)](https://pypi.org/proje
         
         ## Report Preview
         
-        ![Output file](https://github.com/nesegunes/aiv/blob/master/images/report.png)
+        ![Output file](https://github.com/nesegunes/aiv/blob/master/images/report.png?raw=true)
         
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3

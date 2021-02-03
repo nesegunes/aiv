@@ -38,7 +38,19 @@ aiv.getvariant('chr1', 69635, 'G', 'C')
 # Annotate variants
 aiv.annotate_mutations('variant_calls.tsv')
 ```
+## Tests
+
+You can test your installation with sample variant call files. Input test files can be found at: 
+
+```
+./tests/test_annotate_variants.tsv
+./tests/my_data.txt
+```
+## Input File Format
+
+![Input file]()
+
 
 ## Report Preview
 
-![Output file](https://github.com/nesegunes/aiv/blob/master/images/report.png)
+![Output file](https://github.com/nesegunes/aiv/blob/master/images/report.png?raw=true)
