@@ -36,6 +36,9 @@ aiv.getvariant('chr1', 69635, 'G', 'C')
 # Annotate variants
 aiv.annotate_mutations('variant_calls.tsv')
 ```
+## PyPI Repository
+
+[Install](https://pypi.org/project/aiv/)
 
 ## Report Preview
 
