@@ -18,7 +18,7 @@ setuptools.setup(
     description="A variant annotation package",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/nesegunes",
+    url="https://github.com/nesegunes/aiv",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
