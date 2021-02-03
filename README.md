@@ -48,7 +48,7 @@ You can test your installation with sample variant call files. Input test files 
 ```
 ## Input File Format
 
-![Input file]()
+![Input file](https://github.com/nesegunes/aiv/blob/master/images/input.png?raw=true)
 
 
 ## Report Preview
