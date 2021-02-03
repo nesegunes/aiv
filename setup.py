@@ -12,7 +12,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="aiv",
-    version="0.3.22",
+    version="0.3.24",
     author="tardis",
     author_email="nesegunes.ce@gmail.com",
     description="A variant annotation package",
