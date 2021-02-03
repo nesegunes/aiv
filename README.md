@@ -53,4 +53,4 @@ You can test your installation with sample variant call files. Input test files 
 
 ## Report Preview
 
-![Output file](https://github.com/nesegunes/aiv/blob/master/images/report.png?raw=true)
+![Output file](https://github.com/nesegunes/aiv/blob/master/output/test_annotate_variants_AIM_Report-01.png?raw=true)
