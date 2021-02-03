@@ -39,4 +39,4 @@ aiv.annotate_mutations('variant_calls.tsv')
 
 ## Report Preview
 
-[Output file](./images/report.png)
+![Output file](./images/report.png)
