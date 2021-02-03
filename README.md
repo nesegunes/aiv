@@ -1,4 +1,4 @@
-![PyPI](https://img.shields.io/pypi/v/aiv)(https://pypi.org/project/aiv/)
+[![PyPI](https://img.shields.io/pypi/v/aiv)](https://pypi.org/project/aiv/)
 
 
 ## AIV: Annotation of Identified Variants
