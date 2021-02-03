@@ -57,4 +57,4 @@ You can test your installation with sample variant call files. Input test files 
 
 ## Future Work
 
-- Performance can be determined by calculating the running time for given input file with 6000+ mutations.
+- Performance can be determined by calculating the running time for a given input file with 6000+ mutations.
