@@ -1,3 +1,6 @@
+![PyPI](https://img.shields.io/pypi/v/aiv)(https://pypi.org/project/aiv/)
+
+
 ## AIV: Annotation of Identified Variants
 
 Annotation of Identified Variants to Create Reports for Clinicians to Assist Therapeutic Decisions
@@ -36,9 +39,6 @@ aiv.getvariant('chr1', 69635, 'G', 'C')
 # Annotate variants
 aiv.annotate_mutations('variant_calls.tsv')
 ```
-## PyPI Repository
-
-[Install](https://pypi.org/project/aiv/)
 
 ## Report Preview
 
