@@ -50,8 +50,8 @@ You can test your installation with sample variant call files. Input test files 
 
 ```
 ./tests/test_annotate_variants.tsv
-./tests/my_data.txt
 ./tests/bwa_mutect2_nb09_50_lines.txt
+./tests/my_data.txt
 ```
 ## Input File Format
 
