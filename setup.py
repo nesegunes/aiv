@@ -12,7 +12,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="aiv",
-    version="0.3.26",
+    version="0.3.29",
     author="tardis",
     author_email="nesegunes.ce@gmail.com",
     description="A variant annotation package",
@@ -21,7 +21,7 @@ setuptools.setup(
     url="https://github.com/nesegunes/aiv",
     packages=setuptools.find_packages(),
     classifiers=[
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
