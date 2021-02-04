@@ -1,5 +1,7 @@
 [![PyPI](https://img.shields.io/pypi/v/aiv)](https://pypi.org/project/aiv/)  [![GitHub](https://img.shields.io/github/license/nesegunes/aiv)](https://pypi.org/project/aiv/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/aiv)](https://pypi.org/project/aiv/)
+[![PyPI - Format](https://img.shields.io/pypi/format/aiv)](https://pypi.org/project/aiv/)
+
 
 ## AIV: Annotation of Identified Variants
 
