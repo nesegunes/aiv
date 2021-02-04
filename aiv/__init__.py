@@ -20,34 +20,50 @@ from reportlab.lib.enums import TA_JUSTIFY
 def _pull_data(dir_, database):
     # Create an empty list to store annotations
     variant_annotations = []
-    info = None
+    evidence_items = []
+    info = []
     
     # Get information about variant
-    if database == 'civic':
+    if 'civic' in dir_ and database == 'civic':
         gene_ = dir_[database]['entrez_name']
         protein_change_ = dir_[database]['name']
-    else:
-        info = dir_[database]
                             
     # Get variant annotation for identified variant
-    if 'description' in dir_[database]:
+    if 'civic' in dir_ and 'description' in dir_[database]:
         variant_annotations.append(dir_[database]['description'])
     
     # Get evidence statements if known
-    if 'evidence_items' in dir_[database]:
-        evidence_items = []
+    if 'civic' in dir_ and 'evidence_items' in dir_[database]:
         if isinstance(dir_[database]['evidence_items'], list):
             for d in dir_[database]['evidence_items']:
                 evidence_items.append(d['description'])
+ 
+    # If short summaries for the mutation not found in 'civic', store 'ann' values instead
+    for key, value in dir_.items():
+        if isinstance(value, dict) and 'ann' in value.keys():
+            info.append((key, value['ann']))
+            ann = value['ann']
+            gene_ = value['ann']['genename' if isinstance(value['ann'], dict) else 0]
+            if isinstance(gene_, dict): gene_ = gene_['genename']
+            protein_change_ = value['ann']['effect' if isinstance(value['ann'], dict) else 0]
+            if isinstance(protein_change_, dict): protein_change_ = protein_change_['transcript_biotype']
     
+    if not len(variant_annotations):
+        if isinstance(ann, dict):
+            description = 'In database ' + info[0][0] + ' mutation with the gene ID ' + ann['genename'] + ' and Human Genome Variant Society nomenclature ' + ann['hgvs_c'] + ' is found to be ' + ann['effect'] + ' and has a putative impact of ' + ann['putative_impact'] + '.'
+        elif isinstance(ann, list):
+            description = 'In database ' + info[0][0] + ' mutation with the gene ID ' + ann[0]['genename'] + ' and Human Genome Variant Society nomenclature ' + ann[0]['hgvs_c'] + ' is found to be ' + ann[0]['effect'] + ' and has a putative impact of ' + ann[0]['putative_impact'] + '.'
+            
+        variant_annotations.append(description)
+
     return variant_annotations, gene_, protein_change_, info, evidence_items
 
 
-def _add_variant_info(variant_annotations, annotated_variants, gene_, protein_change_, info, v, content, style_, evidence_items):
+def _add_variant_info(variant_annotations, annotated_variants, gene_, protein_change_, info, v, content, style_, evidence_items, assembly):
     # Add info about variant to the report: Gene Name, Protein Change and Coordinates
     content.append(Paragraph('Clinical Variant ' + str(annotated_variants), style_['Heading2']))
     content.append(Paragraph('Gene Name: ' + '\t'+ '\t'+ '\t' + str(gene_) + '\n', style_['BodyText']))
-    content.append(Paragraph('Protein Change: ' + '\t'+ '\t' + str(protein_change_) + '\n', style_['BodyText']))
+    content.append(Paragraph('Protein Change: ' if assembly == 'hg19' else 'Transcript Biotype: ' + '\t'+ '\t' + str(protein_change_) + '\n', style_['BodyText']))
     content.append(Paragraph('Coordinates: ' + '\t'+ '\t'+ '\t' + str(v) + '\n', style_['BodyText']))
     
     # Make a title for variant annotation section
@@ -58,9 +74,9 @@ def _add_variant_info(variant_annotations, annotated_variants, gene_, protein_ch
         for annot in variant_annotations:
             p = Paragraph(str(annot), style_['Justified'])
             content.append(p)
-    elif info:
-        p = Paragraph(str(info) + '\n', style_['Justified'])
-        content.append(p)
+    elif len(info):
+        for i in range(len(info)):
+            content.append(Paragraph('In database ' + info[i][0] + ' mutation is found to be ' + info[i][1]['effect'] if isinstance(info[i][1], dict) else info[i][1][0]['effect'] + '\n', style_['Justified']))
     else:
         p = Paragraph('Variant annotation not found...' + '\n', style_['Justified'])
         content.append(p)
@@ -101,12 +117,12 @@ def getvariant(chromosome, start, ref, var):
     return dir_
 
 
-def annotate_mutations(file):
+def annotate_mutations(file, assembly = 'hg19'):
     # Open variant file with pandas
     identified_variants = pd.read_csv(file, sep='\t')
     
     # Give a name to the output file: 'test_filename' + '_AIM_report.pdf'
-    doc_name = file.split('.')[0] + '_AIM_Report.pdf'
+    doc_name = file.split('.')[0] + '_AIV_Report.pdf'
     
     # Create a sample document and sample style sheet
     report = SimpleDocTemplate(doc_name)
@@ -144,10 +160,10 @@ def annotate_mutations(file):
         
         # Get variant information
         v = myvariant.format_hgvs(chrom_, int(start_), ref_, var_)
-        dir_ = mv.getvariant(v)
+        dir_ = mv.getvariant(v, assembly=assembly)
 
         # Get data from 'civic'
-        if dir_ and 'civic' in dir_:
+        if dir_:
             # Create an empty list to store annotations
             variant_annotations, gene_, protein_change_, info, evidence_items = _pull_data(dir_, 'civic')
         
@@ -155,7 +171,7 @@ def annotate_mutations(file):
             annotated_variants +=1
             
             # Add content to the report: general info, annotations & evidence statements
-            _add_variant_info(variant_annotations, annotated_variants, gene_, protein_change_, info, v, content, style_, evidence_items)
+            _add_variant_info(variant_annotations, annotated_variants, gene_, protein_change_, info, v, content, style_, evidence_items, assembly)
         
         
     # Add processing information: total processed variants and number of annotated variants

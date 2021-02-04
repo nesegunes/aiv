@@ -38,8 +38,11 @@ import aiv
 aiv.getvariant('chr1', 69635, 'G', 'C')
 
 
-# Annotate variants
-aiv.annotate_mutations('variant_calls.tsv')
+# Annotate variants, reference genome: hg38
+aiv.annotate_mutations('variant_calls.tsv', assembly='hg38')
+
+# Annotate variants, reference genome: hg19
+aiv.annotate_mutations('bwa_mutect2_nb09_50_lines.txt', assembly='hg19')
 ```
 ## Tests
 
@@ -48,6 +51,7 @@ You can test your installation with sample variant call files. Input test files 
 ```
 ./tests/test_annotate_variants.tsv
 ./tests/my_data.txt
+./tests/bwa_mutect2_nb09_50_lines.txt
 ```
 ## Input File Format
 
@@ -56,7 +60,7 @@ You can test your installation with sample variant call files. Input test files 
 
 ## Report Preview
 
-![Output file](https://github.com/nesegunes/aiv/blob/master/output/test_annotate_variants_AIM_Report-01.png?raw=true)
+![Output file](https://github.com/nesegunes/aiv/blob/master/output/test_annotate_variants_AIV_Report-01.png?raw=true)
 
 ## Future Work
 
