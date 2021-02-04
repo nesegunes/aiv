@@ -12,7 +12,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="aiv",
-    version="0.3.29",
+    version="0.3.30",
     author="tardis",
     author_email="nesegunes.ce@gmail.com",
     description="A variant annotation package",
@@ -26,5 +26,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    install_requires=['myvariant'],
+    install_requires=['myvariant', 'pandas', 'reportlab'],
 )
