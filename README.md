@@ -37,7 +37,6 @@ import aiv
 # Get variant info 
 aiv.getvariant('chr1', 69635, 'G', 'C')
 
-
 # Annotate variants, reference genome: hg38
 aiv.annotate_mutations('variant_calls.tsv', assembly='hg38')
 
